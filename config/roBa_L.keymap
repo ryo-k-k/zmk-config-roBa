@@ -629,6 +629,8 @@
 &kp LS(TAB)  &kp SLASH   &kp LESS_THAN         &kp GREATER_THAN       &kp SEMICOLON  &trans      &trans  &trans      &kp LEFT_BRACE    &kp RIGHT_BRACE    &trans      &kp LS(TAB)
 &kp CARET    &trans      &trans                &trans                 &trans         &trans      &trans  &trans                                                       &trans
             >;
+
+            sensor-bindings = <&encoder_zoom>;
         };
 
         CTRL_ALT_TAB_TB {
