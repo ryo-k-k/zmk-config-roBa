@@ -1,10 +1,12 @@
 #include "roBa_L.keymap"
-
 #include "boards/shields/Test/roBa_R.overlay"
-
 #include <input/processors.dtsi>
+#include <behaviors.dtsi>
+
 / {
-    /omit-if-no-ref/ zip_temp_layer: zip_temp_layer {
+    /omit-if-no-ref/
+
+    zip_temp_layer: zip_temp_layer {
         compatible = "zmk,input-processor-temp-layer";
         #input-processor-cells = <2>;
         excluded-positions = <
@@ -23,13 +25,26 @@
     trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball>;
-
         input-processors = <&zip_temp_layer MOUSE 10000>;
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        layer_0 {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
+            >;
+        };
     };
 };
 
 &trackball {
     scroll-layers = <EXTRA_FINCTIONS>;
+
     // snipe-layers = <3>;
 
     arrows {
@@ -45,11 +60,7 @@
 
     volume {
         layers = <MEDIA>;
-        bindings =
-            <&none>,
-            <&none>,
-            <&kp C_VOLUME_UP>,
-            <&kp C_VOLUME_DOWN>;
+        bindings = <&none>, <&none>, <&kp C_VOLUME_UP>, <&kp C_VOLUME_DOWN>;
     };
 
     ctrl_alt_tab {
@@ -59,27 +70,20 @@
             <&to_kp ALT_TAB_TB LS(TAB)>,
             <&to_kp CTRL_TAB_TB LCTRL>,
             <&to_kp CTRL_TAB_TB LS(LCTRL)>;
+
         tick = <10>;
     };
 
     alt_tab {
         layers = <ALT_TAB_TB>;
-        bindings =
-            <&kp TAB>,
-            <&kp LS(TAB)>,
-            <&kp UP_ARROW>,
-            <&kp DOWN_ARROW>;
+        bindings = <&kp TAB>, <&kp LS(TAB)>, <&kp UP_ARROW>, <&kp DOWN_ARROW>;
 
         tick = <80>;
     };
 
     ctrl_tab {
         layers = <CTRL_TAB_TB>;
-        bindings =
-            <&kp UP_ARROW>,
-            <&kp DOWN_ARROW>,
-            <&kp LS(TAB)>,
-            <&kp TAB>;
+        bindings = <&kp UP_ARROW>, <&kp DOWN_ARROW>, <&kp LS(TAB)>, <&kp TAB>;
 
         tick = <80>;
     };
