@@ -24,7 +24,6 @@
         compatible = "zmk,input-listener";
         device = <&trackball>;
 
-        input-processors = <&zip_temp_layer MOUSE 10000>;
     };
 };
 
