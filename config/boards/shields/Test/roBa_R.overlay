@@ -65,9 +65,9 @@ trackball: trackball@0 {
     arrows {
         layers = <3>; // レイヤー3で矢印キー動作
         bindings = <
-            &kp RIGHT_ARROW
-            &kp LEFT_ARROW
-            &kp UP_ARROW
+            &kp RIGHT_ARROW,
+            &kp LEFT_ARROW,
+            &kp UP_ARROW,
             &kp DOWN_ARROW
         >;
 
@@ -79,9 +79,9 @@ trackball: trackball@0 {
     volume {
         layers = <2>; // レイヤー2で音量調整
         bindings = <
-            &none
-            &none
-            &kp C_VOLUME_UP
+            &none,
+            &none,
+            &kp C_VOLUME_UP,
             &kp C_VOLUME_DOWN
         >;
 
@@ -89,3 +89,4 @@ trackball: trackball@0 {
         tap-ms = <5>;
     };
 };
+
