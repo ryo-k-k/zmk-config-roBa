@@ -64,10 +64,10 @@
         arrows {
             layers = <3>;
             bindings =
-                <&kp RIGHT_ARROW>,
-                <&kp LEFT_ARROW>,
-                <&kp UP_ARROW>,
-                <&kp DOWN_ARROW>;
+            <&kp RIGHT_ARROW>,
+            <&kp LEFT_ARROW>,
+            <&kp UP_ARROW>,
+            <&kp DOWN_ARROW>;
 
             tick = <10>;
             wait-ms = <5>;
@@ -77,10 +77,10 @@
         volume {
             layers = <2>;
             bindings =
-                    <&none>,
-                    <&none>,
-                    <&kp C_VOLUME_UP>,
-                    <&kp C_VOLUME_DOWN>;
+                <&none>,
+                <&none>,
+                <&kp C_VOLUME_UP>,
+                <&kp C_VOLUME_DOWN>;
 
             wait-ms = <5>;
             tap-ms = <5>;
