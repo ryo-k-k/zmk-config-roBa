@@ -79,7 +79,4 @@
     };
 };
 
-// USB HID 有効化
-&usbd_hid {
-    status = "okay";
-};
+
