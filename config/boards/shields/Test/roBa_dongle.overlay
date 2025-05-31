@@ -1,23 +1,25 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include "roBa.dtsi"
 
- / {
+/ {
     chosen {
-        // キースキャンはモックにして物理キーなしを表現
+        // 物理キースキャンなしを表現するモックキースキャンを指定
         zmk,kscan = &mock_kscan;
         zmk,physical-layout = &physical_layout0;
     };
 
-    // モックのキースキャンデバイス
+    // モックのキースキャンデバイス（物理キーなし用）
     mock_kscan: mock_kscan_0 {
         compatible = "zmk,kscan-mock";
         columns = <0>;
         rows = <0>;
-        events = <0>;  // ← ここを追加。最低1つのダミーイベント必須
-        // col-gpios や row-gpios は書かない（必須エラー回避）
+        // 必須のcol-gpios,row-gpiosをダミー指定（エラー回避用）
+        col-gpios = <&gpio0 0 GPIO_ACTIVE_LOW>;
+        row-gpios = <&gpio0 1 GPIO_ACTIVE_LOW>;
+        events = <0>;
     };
 
-    // キーマップ変換は11列×4行でダミー配置（物理なしでもOK）
+    // キーマップ変換（ダミー配置 11列×4行）
     default_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
         columns = <11>;
@@ -30,14 +32,14 @@
         >;
     };
 
-    // 物理レイアウトの定義（transformのみ）
+    // 物理レイアウト定義（transformのみ指定）
     physical_layout0: physical_layout_0 {
         compatible = "zmk,physical-layout";
         display-name = "No Physical Keys Layout";
         transform = <&default_transform>;
     };
 
-    // 例: トラックボールなど物理的な入力デバイスはここで定義可能
+    // 物理入力例：トラックボール（GPIOピンは使用実態に合わせて変更）
     trackball0: trackball_0 {
         compatible = "zmk,trackball";
         gpio-a = <&xiao_d 10 GPIO_ACTIVE_HIGH>;
@@ -46,12 +48,14 @@
         status = "okay";
     };
 
+    // トラックボールイベントをリッスンするデバイス
     trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball0>;
     };
 };
 
+// ボード外部の左エンコーダー（存在する場合）
 &left_encoder {
     status = "okay";
 };
