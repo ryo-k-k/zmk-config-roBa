@@ -73,7 +73,7 @@
         reg = <0>;
         status = "okay";
         spi-max-frequency = <2000000>;
-        evt-type = "relative"; // ★ 必須項目を追加
+        evt-type = <0>;
         irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
     };
 };
