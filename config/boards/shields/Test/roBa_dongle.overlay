@@ -33,12 +33,33 @@
     };
 };
 
+&spi0 {
+    status = "okay";
+    compatible = "nordic,nrf-spim";
+    pinctrl-0 = <&spi0_default>;
+    pinctrl-1 = <&spi0_sleep>;
+    pinctrl-names = "default", "sleep";
+    cs-gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;
+};
+
+trackball: trackball@0 {
+    status = "okay";
+    compatible = "pixart,pmw3610";
+    reg = <0>;
+    spi-max-frequency = <2000000>;
+    evt-type = <1>;
+    irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+    x-input-code = <0x00>; // REL_X
+    y-input-code = <0x01>; // REL_Y
+};
+
  / {
     trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball>;
     };
 };
+
 
 // ボード外部の左エンコーダー（存在する場合）
 &left_encoder {
