@@ -45,6 +45,3 @@
     };
 };
 
-&trackball_split {
-    device = <&trackball>;
-};
