@@ -32,8 +32,11 @@
     };
 };
 
-&trackball_listener {
-    status = "okay";
+ / {
+    trackball_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackball>;
+    };
 };
 
 &left_encoder {
