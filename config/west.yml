@@ -5,7 +5,7 @@ manifest:
     - name: kumamuk-git
       url-base: https://github.com/kumamuk-git
     - name: ryo-k-k                          # <--- add this
-      url-base: https://github.com/ryo-k-k/prospector-zmk-module.git    # <--- and this
+      url-base: https://github.com/ryo-k-k   # <--- and this
   projects:
     - name: zmk
       remote: zmkfirmware
