@@ -4,8 +4,8 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: kumamuk-git
       url-base: https://github.com/kumamuk-git
-    - name: carrefinho                            # <--- add this
-      url-base: https://github.com/carrefinho     # <--- and this
+    - name: ryo-k-k                          # <--- add this
+      url-base: https://github.com/ryo-k-k/prospector-zmk-module.git    # <--- and this
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -15,7 +15,7 @@ manifest:
       remote: kumamuk-git
       revision: main
     - name: prospector-zmk-module                 # <--- and these
-      remote: carrefinho                          # <---
+      remote: ryo-k-k                        # <---
       revision: main                              # <---
   self:
     path: config
