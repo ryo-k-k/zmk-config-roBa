@@ -112,3 +112,10 @@
         triggers-per-rotation = <10>;
     };
 };
+
+ / {
+    trackball_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackball>;
+    };
+};
