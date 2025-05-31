@@ -1,6 +1,5 @@
 #include <dt-bindings/zmk/matrix_transform.h>
-#include "charybdis.dtsi"
-#include "split_input_common.dtsi"
+#include "roBa.dtsi"
 
  / {
     chosen {
@@ -33,14 +32,14 @@
         transform = <&default_transform>;
     };
 
-    // 🖱️ Trackball listener
+    // トラックボール入力を受け取る
     trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball>;
     };
 };
 
-// 🖱️ SPI 接続 trackball デバイス
+// SPI ピン設定
 &pinctrl {
     spi0_default: spi0_default {
         group1 {
@@ -60,6 +59,7 @@
     };
 };
 
+// トラックボールSPI定義
 &spi0 {
     status = "okay";
     compatible = "nordic,nrf-spim";
@@ -74,10 +74,12 @@
         status = "okay";
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        automouse-layer = <4>;
+        scroll-layers = <5>;
     };
 };
 
-// 💡 USB HID を有効に
+// USB HID 有効化
 &usbd_hid {
     status = "okay";
 };
