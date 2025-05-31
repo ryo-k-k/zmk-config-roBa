@@ -1,4 +1,7 @@
 on: [push, pull_request, workflow_dispatch]
+    - name: Remove BOM from all .overlay files
+      run: |
+        find . -name "*.overlay" -exec sed -i '1s/^\xEF\xBB\xBF//' {} +
 
 jobs:
   build:
