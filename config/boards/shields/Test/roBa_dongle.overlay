@@ -1,7 +1,7 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include "roBa.dtsi"
 
-/ {
+ / {
     chosen {
         // キースキャンはモックにして物理キーなしを表現
         zmk,kscan = &mock_kscan;
@@ -13,6 +13,7 @@
         compatible = "zmk,kscan-mock";
         columns = <0>;
         rows = <0>;
+        events = <0>;  // ← ここを追加。最低1つのダミーイベント必須
         // col-gpios や row-gpios は書かない（必須エラー回避）
     };
 
@@ -51,18 +52,7 @@
     };
 };
 
-
-&kscan0 {
-        col-gpios
-            = <&xiao_d 10 GPIO_ACTIVE_HIGH>
-            , <&xiao_d 9 GPIO_ACTIVE_HIGH> 
-            , <&xiao_d 8 GPIO_ACTIVE_HIGH> 
-            , <&xiao_d 7 GPIO_ACTIVE_HIGH> 
-            , <&gpio0 10 GPIO_ACTIVE_HIGH>
-            , <&gpio0 9 GPIO_ACTIVE_HIGH>
-            ;
-};
-
 &left_encoder {
     status = "okay";
 };
+
