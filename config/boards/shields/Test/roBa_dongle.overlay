@@ -68,13 +68,12 @@
     pinctrl-names = "default", "sleep";
     cs-gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;
 
-    trackball: trackball@0 {
-        compatible = "pixart,pmw3610";
-        reg = <0>;
-        status = "okay";
-        spi-max-frequency = <2000000>;
-        evt-type = <0>;
-        irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-    };
+trackball: trackball@0 {
+    compatible = "pixart,pmw3610";
+    reg = <0>;
+    status = "okay";
+    spi-max-frequency = <2000000>;
+    evt-type = <0>;
+    irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+    x-input-code = <8>;  // ここを追加
 };
-
