@@ -10,7 +10,7 @@ manifest:
       revision: main
       import: app/west.yml
     - name: zmk-pmw3610-driver
-      repo-path: modules/zmk-pmw3610-driver
+      repo-path: modules/zmk-pmw3610-driver   # ← ハイフン必須
       url: https://github.com/badjeff/zmk-pmw3610-driver
       revision: main
   self:
