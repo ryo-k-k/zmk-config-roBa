@@ -47,5 +47,13 @@ config BT_MAX_CONN
 config BT_MAX_PAIRED
     default 6
 
+# エンコーダー機能を有効化
+config ZMK_BEHAVIOR_ROTARY_ENCODER
+    default y
+
+# マウスキー（トラックボールやマウス操作）を有効化
+config ZMK_BEHAVIOR_MOUSE_KEY
+    default y
+
 endif
 
