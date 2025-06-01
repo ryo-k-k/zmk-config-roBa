@@ -3,7 +3,7 @@ manifest:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
     - name: badjeff
-      url-base: https://github.com/badjeff/.git
+      url-base: https://github.com/badjeff
   projects:
     - name: zmk
       remote: zmkfirmware
