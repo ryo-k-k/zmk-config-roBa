@@ -1,21 +1,14 @@
-/dts-v1/;
+#include <dt-bindings/zmk/matrix_transform.h>
 
 / {
     chosen {
-        zmk,physical-layout = &dongle_physical_layout;
+        zmk,kscan = &mock_kscan;
     };
 
-    dongle_physical_layout: dongle_physical_layout {
-        compatible = "zmk,physical-layout";
-        display-name = "Dongle Layout";
-        transform = <&default_transform>;
-        // keysは無し
-    };
-
-    default_transform: keymap_transform_0 {
-        compatible = "zmk,matrix-transform";
+    mock_kscan: mock_kscan_0 {
+        compatible = "zmk,kscan-mock";
         columns = <0>;
         rows = <0>;
-        map = <>;
+        events = <0>;
     };
 };
