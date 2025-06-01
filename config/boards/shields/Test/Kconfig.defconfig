@@ -1,58 +1,71 @@
-# Kconfig.shield
-
 if SHIELD_ROBA_L
 
 config ZMK_KEYBOARD_NAME
+    string
     default "roBa_L"
 
 config ZMK_SPLIT
+    bool
     default y
 
-# Left half is peripheral, no need to define role explicitly here
+# 左側はPeripheralなのでROLE_CENTRALの定義は不要
+
 endif
 
 if SHIELD_ROBA_R
 
 config ZMK_KEYBOARD_NAME
+    string
     default "roBa_R"
 
 config ZMK_SPLIT
+    bool
     default y
 
-# Right half is peripheral, do not set ROLE_CENTRAL here
+# 右側もPeripheralなのでROLE_CENTRALの定義は不要
+
 endif
 
 if SHIELD_ROBA_DONGLE
 
-# Max 16 characters in keyboard name
+# キーボード名（最大16文字）
 config ZMK_KEYBOARD_NAME
+    string
     default "roBa_Dongle"
 
+# 分割キーボード有効化
 config ZMK_SPLIT
+    bool
     default y
 
-# Dongle acts as central controller
+# 中央のドングルがCentralとして振る舞う
 config ZMK_SPLIT_ROLE_CENTRAL
+    bool
     default y
 
-# Set to 2 to support both left and right peripherals
+# 接続するPeripheralの数（左右なら2）
 config ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS
+    int
     default 2
 
-# Number of total Bluetooth connections = peripherals + host connections (e.g. PC/phone)
+# Bluetoothの最大接続数 = Peripheral数 + Host数（例: PCやスマホ）
 config BT_MAX_CONN
+    int
     default 6
 
-# Number of paired devices, same as above
+# ペアリング最大数（通常BT_MAX_CONNと同じ）
 config BT_MAX_PAIRED
+    int
     default 6
 
-# エンコーダー機能を有効化
+# エンコーダー（ロータリーエンコーダー）機能を有効化
 config ZMK_BEHAVIOR_ROTARY_ENCODER
+    bool "Enable rotary encoder behavior"
     default y
 
-# マウスキー（トラックボールやマウス操作）を有効化
+# トラックボールなどのマウスキー機能を有効化
 config ZMK_BEHAVIOR_MOUSE_KEY
+    bool "Enable mouse key behavior"
     default y
 
 endif
