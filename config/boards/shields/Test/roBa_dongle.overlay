@@ -2,7 +2,7 @@
 
 / {
     chosen {
-        zmk,kscan = &mock_kscan;
+        zmk,usb = &usbd;
     };
 
     mock_kscan: mock_kscan_0 {
@@ -11,4 +11,12 @@
         rows = <0>;
         events = <0>;
     };
+};
+
+&usbd {
+    status = "okay";
+};
+
+&ble_central {
+    status = "okay";
 };
