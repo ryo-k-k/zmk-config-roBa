@@ -17,6 +17,3 @@
     status = "okay";
 };
 
-&ble_central {
-    status = "okay";
-};
