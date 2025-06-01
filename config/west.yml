@@ -9,8 +9,8 @@ manifest:
       remote: zmkfirmware
       revision: main
       import: app/west.yml
-    - name: badjeff
-      remote: zmk-pmw3610-driver
+    - name: zmk-pmw3610-driver
+      remote: badjeff
       revision: main
   self:
     path: config
