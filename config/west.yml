@@ -2,15 +2,15 @@ manifest:
   remotes:
     - name: urob
       url-base: https://github.com/urob
-    - name: kumamuk-git
-      url-base: https://github.com/kumamuk-git
+    - name: badjeff
+      url-base: https://github.com/badjeff
   projects:
     - name: zmk
       remote: urob
       revision: main  # または使用したいブランチ名
       import: app/west.yml
     - name: zmk-pmw3610-driver
-      remote: kumamuk-git
+      remote: badjeff
       revision: main
   self:
     path: config
