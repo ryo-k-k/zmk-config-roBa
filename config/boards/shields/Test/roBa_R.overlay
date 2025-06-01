@@ -5,43 +5,35 @@
 };
 
 &kscan0 {
-        col-gpios
-            = <&xiao_d 10 GPIO_ACTIVE_HIGH>
-            , <&xiao_d 9 GPIO_ACTIVE_HIGH> 
-            , <&xiao_d 8 GPIO_ACTIVE_HIGH> 
-            , <&xiao_d 7 GPIO_ACTIVE_HIGH> 
-            , <&gpio0 10 GPIO_ACTIVE_HIGH>
-            ;
+    col-gpios = <&xiao_d 10 GPIO_ACTIVE_HIGH>,
+                <&xiao_d 9 GPIO_ACTIVE_HIGH>,
+                <&xiao_d 8 GPIO_ACTIVE_HIGH>,
+                <&xiao_d 7 GPIO_ACTIVE_HIGH>,
+                <&gpio0 10 GPIO_ACTIVE_HIGH>;
 };
 
-/ {
-    trackball_listener {
-        compatible = "zmk,input-listener";
-        device = <&trackball>;
-
-    };
+&xiao_serial {
+    status = "disabled";
 };
 
 &pinctrl {
     spi0_default: spi0_default {
         group1 {
             psels = <NRF_PSEL(SPIM_SCK, 0, 5)>,
-                <NRF_PSEL(SPIM_MOSI, 0, 4)>,
-                <NRF_PSEL(SPIM_MISO, 0, 4)>;
+                    <NRF_PSEL(SPIM_MOSI, 0, 4)>,
+                    <NRF_PSEL(SPIM_MISO, 0, 4)>;
         };
     };
 
     spi0_sleep: spi0_sleep {
         group1 {
             psels = <NRF_PSEL(SPIM_SCK, 0, 5)>,
-                <NRF_PSEL(SPIM_MOSI, 0, 4)>,
-                <NRF_PSEL(SPIM_MISO, 0, 4)>;
+                    <NRF_PSEL(SPIM_MOSI, 0, 4)>,
+                    <NRF_PSEL(SPIM_MISO, 0, 4)>;
             low-power-enable;
         };
     };
 };
-
-&xiao_serial { status = "disabled"; };
 
 &spi0 {
     status = "okay";
@@ -52,14 +44,20 @@
     cs-gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;
 
     trackball: trackball@0 {
-        status = "okay";
         compatible = "pixart,pmw3610";
         reg = <0>;
+        status = "okay";
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-        automouse-layer = <4>;
-        scroll-layers = <5>;
+
+        evt-type = "pointer-move"; // ← 追加必須！
+
+        // 以下は badjeff 版には無いプロパティ。必要なら後で拡張も可能。
+        // automouse-layer = <4>;
+        // scroll-layers = <5>;
     };
 };
 
+/ {
+    trackbal
 
