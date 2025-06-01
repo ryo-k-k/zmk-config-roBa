@@ -20,3 +20,47 @@ config ZMK_SPLIT
     default y
 
 endif
+
+if SHIELD_ROBA_DONGLE
+
+# キーボード名（最大16文字）
+config ZMK_KEYBOARD_NAME
+    string
+    default "roBa_Dongle"
+
+# 分割キーボード有効化
+config ZMK_SPLIT
+    bool
+    default y
+
+# 中央のドングルがCentralとして振る舞う
+config ZMK_SPLIT_ROLE_CENTRAL
+    bool
+    default y
+
+# 接続するPeripheralの数（左右なら2）
+config ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS
+    int
+    default 2
+
+# Bluetoothの最大接続数 = Peripheral数 + Host数（例: PCやスマホ）
+config BT_MAX_CONN
+    int
+    default 6
+
+# ペアリング最大数（通常BT_MAX_CONNと同じ）
+config BT_MAX_PAIRED
+    int
+    default 6
+
+# エンコーダー（ロータリーエンコーダー）機能を有効化
+config ZMK_BEHAVIOR_ROTARY_ENCODER
+    bool "Enable rotary encoder behavior"
+    default y
+
+# トラックボールなどのマウスキー機能を有効化
+config ZMK_BEHAVIOR_MOUSE_KEY
+    bool "Enable mouse key behavior"
+    default y
+
+endif
