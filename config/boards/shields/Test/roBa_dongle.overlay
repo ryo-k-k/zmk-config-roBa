@@ -12,8 +12,3 @@
         events = <0>;
     };
 };
-
-&usbd {
-    status = "okay";
-};
-
