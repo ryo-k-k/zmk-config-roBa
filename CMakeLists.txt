@@ -1,4 +1,5 @@
-CMakeLists.txttarget_link_libraries(your_driver
-  PRIVATE
-    zmk
+zephyr_library()
+
+zephyr_library_sources(
+  src/pmw3610.c
 )
