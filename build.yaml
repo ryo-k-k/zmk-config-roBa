@@ -19,7 +19,7 @@
 ---
 include:
  - board: seeeduino_xiao_ble
-   shield: roBa_dongle prospector_adapter
+   shield: roBa_dongle  prospector_adapter
    cmake-args: -DCONFIG_ZMK_MOUSE=y -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=y -DCONFIG_ZMK_SENSOR_BEHAVIOR=y
  - board: seeeduino_xiao_ble
    shield: roBa_R
