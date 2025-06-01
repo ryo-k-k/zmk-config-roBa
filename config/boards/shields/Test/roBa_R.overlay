@@ -33,7 +33,7 @@
         reg = <0>;
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio0 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-        evt-type = "relative"; // ★ これを追加（必須）
+        evt-type = <0>; // ✅ 正しい指定方法（例: 0 = RELATIVE）
 
         /*   optional features   */
         // snipe-layers = <1>;
