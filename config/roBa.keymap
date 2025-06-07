@@ -45,6 +45,13 @@
             bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
             label = "TO_LAYER_0";
         };
+
+        dc: dc {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&mkp MB1 &mkp MB1>;
+            label = "DC";
+        };
     };
 
     behaviors {
@@ -63,10 +70,10 @@
 
         default_layer {
             bindings = <
-&mt LEFT_WIN Q             &kp W         &kp E     &kp R             &kp T                                                 &kp Y        &kp U  &lt 5 I    &kp O    &kp P
-&lt 3 A                    &kp S         &kp D     &kp F             &kp G        &kp LS(LG(S))             &kp MINUS      &kp H        &kp J  &kp K      &kp L    &kp MINUS
-&mt LEFT_SHIFT Z           &kp X         &kp C     &kp V             &kp B        &kp COLON                 &kp SEMICOLON  &kp N        &kp M  &kp COMMA  &kp DOT  &kp LEFT_CONTROL
-&mt LEFT_SHIFT LANGUAGE_1  &kp LEFT_ALT  &mkp MB1  &lt 2 LANGUAGE_2  &lt 1 SPACE  &lt_to_layer_0 6 TAB      &kp BACKSPACE  &lt 1 ENTER                             &kp DEL
+&mt LEFT_WIN Q             &kp W         &kp E     &kp R             &kp T                                                 &kp Y      &kp U  &lt 5 I      &kp O    &kp P
+&lt 3 A                    &kp S         &kp D     &kp F             &kp G        &kp LS(LG(S))             &kp MINUS      &kp H      &kp J  &lt 4 K      &kp L    &mt LEFT_SHIFT UNDERSCORE
+&mt LEFT_SHIFT Z           &kp X         &kp C     &kp V             &kp B        &kp COLON                 &kp SEMICOLON  &kp N      &kp M  &lt 5 COMMA  &kp DOT  &mt LEFT_CONTROL UNDERSCORE
+&mt LEFT_SHIFT LANGUAGE_1  &kp LEFT_ALT  &mkp MB1  &lt 2 LANGUAGE_2  &lt 1 SPACE  &lt_to_layer_0 6 TAB      &kp BACKSPACE  &kp ENTER                               &kp DEL
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
