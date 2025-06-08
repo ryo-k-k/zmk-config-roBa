@@ -1,5 +1,5 @@
 /*
- * roBa Dongle Overlay (Final Version 2)
+ * roBa Dongle Overlay (Final Corrected Version)
  */
 
 / {
@@ -7,11 +7,13 @@
         zmk,kscan = &mock_kscan;
     };
 
-    // 必須プロパティである rows と columns を追加した、
+    // 必須プロパティである rows, columns, events をすべて含んだ
     // 完全なダミーのkscanを定義します。
     mock_kscan: mock_kscan {
         compatible = "zmk,kscan-mock";
         rows = <0>;
         columns = <0>;
+        // ★★★ この行を追加 ★★★
+        events = <>; // ダミーであっても events プロパティは必須
     };
 };
