@@ -1,27 +1,35 @@
 #include <dt-bindings/zmk/matrix_transform.h>
+#include <dt-bindings/zmk/hid_usage.h>
+#include <dt-bindings/zmk/hid_usage_pages.h>
 
- / {
+/ {
     chosen {
-        zmk,kscan = &mock_kscan;
+        // ★修正1: mock_kscan への参照を削除または適切な kscan_0 に変更
+        // ドングルがキーマトリックスを持たない場合、この行は削除するか
+        // ZMKが自動的にポインティングデバイスを kscan に紐付けることに任せるのが良いでしょう。
+        // もし他に物理的なキーマトリックスがあるなら、その kscan ノードを指定します。
+        // ここでは、mock_kscan の参照を削除することを推奨します。
+        // zmk,kscan = &kscan_0; // もし物理キーマトリックスがあれば、ここに指定
         zmk,physical-layout = &physical_layout0;
+        zmk,split-role = &split_role_central; // 中央側であることを明示 (Kconfigでも設定済みですが、念のため)
     };
 
-    mock_kscan: mock_kscan_0 {
-        compatible = "zmk,kscan-mock";
-        columns = <0>;
-        rows = <0>;
-        events = <0>;
-    };
+    // mock_kscan: mock_kscan_0 { // ★修正2: mock_kscan は不要なので削除またはコメントアウト
+    //     compatible = "zmk,kscan-mock";
+    //     columns = <0>;
+    //     rows = <0>;
+    //     events = <0>;
+    // };
 
     default_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
         columns = <11>;
         rows = <4>;
         map = <
-            RC(0,0) RC(0,1) RC(0,2) RC(0,3) RC(0,4)                     RC(0,6) RC(0,7) RC(0,8) RC(0,9) RC(0,10)
-            RC(1,0) RC(1,1) RC(1,2) RC(1,3) RC(1,4) RC(1,5)     RC(3,6) RC(1,6) RC(1,7) RC(1,8) RC(1,9) RC(1,10)
-            RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)     RC(3,7) RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(2,10)
-            RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4) RC(3,5)     RC(3,8) RC(3,9)                         RC(3,10)
+            RC(0,0) RC(0,1) RC(0,2) RC(0,3) RC(0,4)                   RC(0,6) RC(0,7) RC(0,8) RC(0,9) RC(0,10)
+            RC(1,0) RC(1,1) RC(1,2) RC(1,3) RC(1,4) RC(1,5)   RC(3,6) RC(1,6) RC(1,7) RC(1,8) RC(1,9) RC(1,10)
+            RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)   RC(3,7) RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(2,10)
+            RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4) RC(3,5)   RC(3,8) RC(3,9)                   RC(3,10)
         >;
     };
 
@@ -29,5 +37,42 @@
         compatible = "zmk,physical-layout";
         display-name = "Default Layout";
         transform = <&default_transform>;
+    };
+
+    // ★追加1: トラックボールセンサー（PMW3360）のDTSノード
+    // Seeeduino Xiao BLE の SPI ペリフェラルに合わせて変更してください
+    // SPIピン（SCK, MOSI, MISO, CS）とモーション割り込みピン（MOT）は回路図で確認！
+    &spi0 { // Xiao BLEの利用可能なSPIペリフェラル (通常は &spi0 など)
+        status = "okay"; // SPIペリフェラルが有効であることを確認
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        pmw3360@0 { // SPIバス上のチップセレクトラインの番号に合わせる
+            compatible = "pixart,pmw3360";
+            reg = <0>; // CSピンが接続されているSPIアドレス（多くの場合0か1）
+            status = "okay"; // センサーが有効であることを確認
+            label = "TRACKBALL_SENSOR"; // 識別しやすいラベル
+            spi-max-frequency = <4000000>; // Kconfigと同じ値推奨 (PMW3360の推奨周波数)
+
+            // !!! 以下のピン番号は例です。あなたの回路図に合わせて変更してください !!!
+            sck-gpios = <&gpio0 23 GPIO_ACTIVE_HIGH>; // SCK (SPI Clock)
+            mosi-gpios = <&gpio0 24 GPIO_ACTIVE_HIGH>; // MOSI (Master Out Slave In)
+            miso-gpios = <&gpio0 25 GPIO_ACTIVE_HIGH>; // MISO (Master In Slave Out)
+            cs-gpios = <&gpio0 26 GPIO_ACTIVE_LOW>; // CS (Chip Select)
+            mot-gpios = <&gpio0 27 GPIO_ACTIVE_HIGH>; // MOT (Motion Interrupt)
+        };
+    };
+
+    // ★追加2: ロータリーエンコーダーのDTSノード
+    // ピン番号 (a-gpios, b-gpios) は回路図で確認！
+    rotary_encoders {
+        compatible = "zmk,rotary-encoder";
+        label = "MAIN_ENCODER"; // キーマップで使う名前 (例: &encoder MAIN_ENCODER)
+        status = "okay"; // エンコーダーが有効であることを確認
+
+        // !!! 以下のピン番号は例です。あなたの回路図に合わせて変更してください !!!
+        a-gpios = <&gpio0 5 GPIO_ACTIVE_HIGH>;  // エンコーダーのA相ピン
+        b-gpios = <&gpio0 6 GPIO_ACTIVE_HIGH>;  // エンコーダーのB相ピン
+        resolution = <4>; // エンコーダーの分解能 (多くのエンコーダーは4)
     };
 };
