@@ -8,4 +8,4 @@ requires:
 
 # ★★★★★ これが最重要 ★★★★★
 # roBaシールドの基本設計図として roBa.dts を読み込むように指示
-dts_file: roBa.dtsi
+dts_file: roBa.dts
