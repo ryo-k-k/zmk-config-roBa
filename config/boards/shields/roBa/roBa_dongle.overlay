@@ -2,10 +2,6 @@
  * roBa Dongle Overlay (Final Corrected Version)
  */
 
-&default_transform {
-    col-offset = <6>;
-};
-
 / {
     chosen {
         zmk,kscan = &mock_kscan;
