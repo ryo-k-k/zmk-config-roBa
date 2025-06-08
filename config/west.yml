@@ -2,15 +2,17 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: kumamuk-git
-      url-base: https://github.com/kumamuk-git
+    # ★ あなたのGitHubアカウントを指すリモートを定義します
+    - name: ryo-k-k  # ← ここは好きな名前でOKです（例: my-zmk-forks）
+      url-base: https://github.com/ryo-k-k # ← ここにあなたのGitHubユーザー名を入れてください
   projects:
     - name: zmk
       remote: zmkfirmware
       revision: main
       import: app/west.yml
     - name: zmk-pmw3610-driver
-      remote: kumamuk-git
-      revision: main
+      # ★ あなたのリモートとフォークしたリポジトリを指定します
+      remote: ryo-k-k # ← 上で定義したリモート名
+      revision: main              # ← フォークしたリポジトリのブランチ名（通常はmain）
   self:
     path: config
