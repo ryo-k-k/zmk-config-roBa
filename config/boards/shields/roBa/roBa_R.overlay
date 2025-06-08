@@ -1,4 +1,23 @@
+/*
+ * Copyright (c) 2024 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+/* ZMKで定義されたキーコード名 (&kpなど) を使うために必要 */
+#include <dt-bindings/zmk/keys.h>
+
+/* * roBa.dtsiに共通設定をまとめている場合は、このincludeを残します。
+ * もしこのファイル単体で右手側の設定を完結させる場合は、不要です。
+ */
 #include "roBa.dtsi"
+
+
+/*
+ * ===================================================================
+ * 右手側の物理的なキーマトリックス（配線）の定義
+ * ===================================================================
+ */
 
 &kscan0 {
     col-gpios
@@ -10,6 +29,64 @@
         ;
 };
 
+
+/* * ===================================================================
+ * 右手側に搭載されたトラックボールの定義（ここが重要）
+ * ===================================================================
+ */
+
+/* 修正: 重複していたので、&pinctrl の定義は1つにまとめます */
+&pinctrl {
+    /* SPI通信の通常時に使うピンの定義 */
+    spi0_default: spi0_default {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK, 0, 5)>,
+                    <NRF_PSEL(SPIM_MOSI, 0, 4)>,
+                    <NRF_PSEL(SPIM_MISO, 0, 4)>;
+        };
+    };
+
+    /* SPI通信のスリープ時に使うピンの定義 (省電力用) */
+    spi0_sleep: spi0_sleep {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK, 0, 5)>,
+                    <NRF_PSEL(SPIM_MOSI, 0, 4)>,
+                    <NRF_PSEL(SPIM_MISO, 0, 4)>;
+            low-power-enable;
+        };
+    };
+};
+
+/* 追記: これが不足していたトラックボール本体の定義です */
+&spi0 {
+    /* SPIバスを有効化 */
+    status = "okay";
+    /* 通常時とスリープ時のピン設定を適用 */
+    pinctrl-0 = <&spi0_default>;
+    pinctrl-1 = <&spi0_sleep>;
+    pinctrl-names = "default", "sleep";
+    /* トラックボールのチップセレクト(CS)ピン */
+    cs-gpios = <&gpio0 9 GPIO_ACTIVE_LOW>; /* 注意: 右手側の実際の配線に合わせてください */
+
+    /* trackball: というラベルで、センサーを定義する */
+    trackball: trackball@0 {
+        status = "okay";
+        compatible = "pixart,pmw3610";
+        reg = <0>;
+        spi-max-frequency = <2000000>;
+        /* トラックボールの割り込み(IRQ)ピン */
+        irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* 注意: 右手側の実際の配線に合わせてください */
+
+        /* 必要に応じて、レイヤーに応じた機能設定を追加 */
+        // scroll-layers = <5>;
+        // arrows {
+        //     layers = <3>;
+        //     ...
+        // };
+    };
+};
+
+/* 定義した`&trackball`を監視するリスナー */
 / {
     trackball_listener {
         compatible = "zmk,input-listener";
@@ -17,44 +94,12 @@
     };
 };
 
-&pinctrl {
-    spi0_default: spi0_default {
-        group1 {
-            psels = <NRF_PSEL(SPIM_SCK, 0, 5)>,
-                  <NRF_PSEL(SPIM_MOSI, 0, 4)>,
-                  <NRF_PSEL(SPIM_MISO, 0, 4)>;
-        };
-    };
 
-    spi0_sleep: spi0_sleep {
-        group1 {
-            psels = <NRF_PSEL(SPIM_SCK, 0, 5)>,
-                  <NRF_PSEL(SPIM_MOSI, 0, 4)>,
-                  <NRF_PSEL(SPIM_MISO, 0, 4)>;
-            low-power-enable;
-        };
-    };
-};
+/*
+ * ===================================================================
+ * その他の設定
+ * ===================================================================
+ */
 
+/* シリアル通信を無効化し、ピンを他の用途で使えるようにする */
 &xiao_serial { status = "disabled"; };
-
-#include <dt-bindings/zmk/keys.h>
-
-&pinctrl {
-    spi0_default: spi0_default {
-        group1 {
-            psels = <NRF_PSEL(SPIM_SCK, 0, 5)>,
-                  <NRF_PSEL(SPIM_MOSI, 0, 4)>,
-                  <NRF_PSEL(SPIM_MISO, 0, 4)>;
-        };
-    };
-
-    spi0_sleep: spi0_sleep {
-        group1 {
-            psels = <NRF_PSEL(SPIM_SCK, 0, 5)>,
-                  <NRF_PSEL(SPIM_MOSI, 0, 4)>,
-                  <NRF_PSEL(SPIM_MISO, 0, 4)>;
-            low-power-enable;
-        };
-    };
-};
