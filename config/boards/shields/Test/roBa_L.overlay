@@ -2,7 +2,7 @@
  * roBa Left-Hand Side Overlay
  */
 
-// 左手側で使う kscan と left_encoder を有効化
+// 左手側で使う kscan と left_encoder を有効化します。
 &kscan {
     status = "okay";
 };
