@@ -1,16 +1,17 @@
 /*
- * roBa Dongle Overlay (Final Version)
+ * roBa Dongle Overlay (Final Version 2)
  */
 
 / {
     chosen {
-        // ドングルのキー入力(kscan)として、何もしないダミーの「mock_kscan」を指定します。
-        // これにより、キーボード本体のkscan定義が使われるのを防ぎ、ビルドエラーを回避します。
         zmk,kscan = &mock_kscan;
     };
 
-    // 何もしない0行0列のダミーのkscanを定義します。
+    // 必須プロパティである rows と columns を追加した、
+    // 完全なダミーのkscanを定義します。
     mock_kscan: mock_kscan {
         compatible = "zmk,kscan-mock";
+        rows = <0>;
+        columns = <0>;
     };
 };
