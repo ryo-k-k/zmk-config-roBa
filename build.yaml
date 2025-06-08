@@ -29,12 +29,14 @@ include:
   # cmake-args は削除します。
   - board: seeeduino_xiao_ble
     shield: roBa_R
+    cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
 
   # 左手側（ペリフェラル）
   # こちらも同様に、設定は roBa_L.conf ファイルに記述するため、
   # cmake-args は削除します。
   - board: seeeduino_xiao_ble
     shield: roBa_L
+    cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
 
   # 設定リセット用ファームウェア（変更なし）
   - board: seeeduino_xiao_ble
