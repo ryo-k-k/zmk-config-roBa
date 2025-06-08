@@ -1,10 +1,14 @@
-/*
- * roBa Left-Hand Side Overlay
- */
+#include "roBa.dtsi"
 
-// 左手側で使う kscan と left_encoder を有効化します。
-&kscan {
-    status = "okay";
+&kscan0 {
+        col-gpios
+            = <&xiao_d 10 GPIO_ACTIVE_HIGH>
+            , <&xiao_d 9 GPIO_ACTIVE_HIGH> 
+            , <&xiao_d 8 GPIO_ACTIVE_HIGH> 
+            , <&xiao_d 7 GPIO_ACTIVE_HIGH> 
+            , <&gpio0 10 GPIO_ACTIVE_HIGH>
+            , <&gpio0 9 GPIO_ACTIVE_HIGH>
+            ;
 };
 
 &left_encoder {
