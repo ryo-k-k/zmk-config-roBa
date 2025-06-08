@@ -2,13 +2,11 @@
  * roBa Right-Hand Side Overlay
  */
 
-// SPIバスを有効化します。
-// これにより、roBa.dtsで &spi0 の中に定義された trackball も自動的に有効になります。
-&spi0 {
+// 右手側で使う kscan と trackball を有効化
+&kscan {
     status = "okay";
 };
 
-// もし右手側にもエンコーダーが接続されている場合は、以下のコメントを外します。
-// &right_encoder {
-//     status = "okay";
-// };
+&trackball {
+    status = "okay";
+};
