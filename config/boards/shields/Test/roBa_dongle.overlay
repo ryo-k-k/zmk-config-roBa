@@ -28,6 +28,5 @@
     status = "disabled";
     device = <&trackball_split>;
 };
-&trackball_listener {
-    status = "okay";
-};
+
+
