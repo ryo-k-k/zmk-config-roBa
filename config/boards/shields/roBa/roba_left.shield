@@ -1,0 +1,3 @@
+name: roba_left
+type: shield
+requires: [seeeduino_xiao_ble]
