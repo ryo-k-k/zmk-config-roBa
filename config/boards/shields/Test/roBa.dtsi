@@ -1,16 +1,15 @@
 /*
- * roBa Shield Definition
+ * roBa Shield Definition (Final Corrected Version)
  */
 
 #include <dt-bindings/zmk/matrix_transform.h>
 
 / {
-    // ★★★★★ この chosen ノードを削除 ★★★★★
-    // chosen ノードは keymap ファイル側で定義するため、ここでは不要です。
+    // chosen ノードは keymap ファイル側で定義するため、ここでは記述しません。
 
     matrix_transform: matrix_transform {
         compatible = "zmk,matrix-transform";
-        columns = <11>;
+        columns = ;
         rows = <4>;
         map = <
             RC(0,0) RC(0,1) RC(0,2) RC(0,3) RC(0,4)           RC(0,6) RC(0,7) RC(0,8) RC(0,9) RC(0,10)
@@ -23,7 +22,7 @@
     kscan: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         label = "KSCAN";
-        status = "disabled"; // デフォルトで無効化
+        status = "disabled"; // デフォルトで無効
 
         row-gpios
             = <&gpio0 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
@@ -42,15 +41,17 @@
         a-gpios = <&gpio0 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         b-gpios = <&gpio0 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         steps-per-period = <2>;
-        status = "disabled"; // デフォルトで無効化
+        status = "disabled"; // デフォルトで無効
     };
+};
 
-    // &spi0 は seeeduino_xiao_ble.dts で定義済み
+// &spi0 は seeeduino_xiao_ble.dts で定義済みのため、ここで参照します。
+&spi0 {
     trackball: trackball@0 {
         compatible = "pixart,pmw3610";
         reg = <0>;
         spi-max-frequency = <2000000>;
         cs-gpios = <&gpio0 17 (GPIO_ACTIVE_LOW)>;
-        status = "disabled"; // デフォルトで無効化
+        status = "disabled"; // デフォルトで無効
     };
 };
