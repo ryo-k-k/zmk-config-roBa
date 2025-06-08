@@ -5,6 +5,8 @@ manifest:
     # ★ あなたのGitHubアカウントを指すリモートを定義します
     - name: ryo-k-k  # ← ここは好きな名前でOKです（例: my-zmk-forks）
       url-base: https://github.com/ryo-k-k # ← ここにあなたのGitHubユーザー名を入れてください
+    - name: carrefinho                            # <--- add this
+      url-base: https://github.com/carrefinho     # <--- and this
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -14,5 +16,8 @@ manifest:
       # ★ あなたのリモートとフォークしたリポジトリを指定します
       remote: ryo-k-k # ← 上で定義したリモート名
       revision: main              # ← フォークしたリポジトリのブランチ名（通常はmain）
+    - name: prospector-zmk-module                 # <--- and these
+      remote: carrefinho                          # <---
+      revision: main                              # <---
   self:
     path: config
