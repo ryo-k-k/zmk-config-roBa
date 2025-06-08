@@ -12,7 +12,3 @@
         events = <0>;
     };
 };
-
-&trackball_listener {
-    status = "okay";
-};
