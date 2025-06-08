@@ -2,6 +2,15 @@
 
  / {
 
+    // ★ ダミー kscan ノード（必要フィールドを定義してエラー回避）
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+        row-gpios = <&gpio0 0 GPIO_ACTIVE_LOW>;
+        col-gpios = <&gpio0 1 GPIO_ACTIVE_LOW>;
+        diode-direction = "col2row";
+    };
+
+    // ★ Split 受信用のノード
     split_inputs {
         #address-cells = <1>;
         #size-cells = <0>;
@@ -12,6 +21,7 @@
         };
     };
 
+    // ★ Splitからの入力を監視する input-listener ノード
     trackball_listener: trackball_listener {
         compatible = "zmk,input-listener";
         status = "okay";
