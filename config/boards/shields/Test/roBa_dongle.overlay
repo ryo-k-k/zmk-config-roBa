@@ -1,9 +1,32 @@
-/* ドングル用の設定ファイル */
+// roBa_dongle.overlay
 
 / {
-    /*
-     * ドングルはキーのスキャンや物理レイアウトを持たないため、
-     * chosen内の zmk,kscan や zmk,physical-layout は不要です。
-     * mock_kscan, default_transform, physical_layout0 ノードもすべて削除します。
-     */
+    chosen {
+        // zmk,kscan プロパティにダミーの kscan デバイスを指定します。
+        // これにより、ZMKはキーボードマトリックスが存在すると認識します。
+        zmk,kscan = &kscan0;
+    };
+
+    // ダミーのキースキャンデバイスを定義します。
+    // drive-gpios や input-gpios は空で問題ありません。
+    kscan0: kscan_0 {
+        compatible = "zmk,kscan-gpio-matrix";
+        diode-direction = "col2row"; // "row2col" でも可
+
+        // ここにGPIOの定義は不要です
+        // row-gpios = <>;
+        // col-gpios = <>;
+    };
+
+    // ダミーのマトリックストランスフォームを定義します。
+    // これにより、キーマップのサイズが決定されます。
+    // keymapノードの `map` プロパティも空で問題ありません。
+    matrix_transform: matrix_transform_0 {
+        compatible = "zmk,matrix-transform";
+        rows = <1>;
+        columns = <1>;
+
+        map = <
+        >;
+    };
 };
