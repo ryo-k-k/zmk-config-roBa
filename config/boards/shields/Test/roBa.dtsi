@@ -1,12 +1,14 @@
+/*
+ * roBa Shield Definition
+ */
+
 #include <dt-bindings/zmk/matrix_transform.h>
 
 / {
-    chosen {
-        zmk,kscan = &kscan;
-        zmk,matrix_transform = &default_transform;
-    };
+    // ★★★★★ この chosen ノードを削除 ★★★★★
+    // chosen ノードは keymap ファイル側で定義するため、ここでは不要です。
 
-    default_transform: keymap_transform_0 {
+    matrix_transform: matrix_transform {
         compatible = "zmk,matrix-transform";
         columns = <11>;
         rows = <4>;
@@ -21,6 +23,8 @@
     kscan: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         label = "KSCAN";
+        status = "disabled"; // デフォルトで無効化
+
         row-gpios
             = <&gpio0 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
               <&gpio0 1  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
@@ -38,47 +42,15 @@
         a-gpios = <&gpio0 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         b-gpios = <&gpio0 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         steps-per-period = <2>;
-        status = "disabled";
+        status = "disabled"; // デフォルトで無効化
     };
 
-    right_encoder: encoder_right {
-        compatible = "alps,ec11";
-        a-gpios = <&gpio0 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>; // 右手側のピンに要修正
-        b-gpios = <&gpio0 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>; // 右手側のピンに要修正
-        steps-per-period = <2>;
-        status = "disabled";
-    };
-};
-
-&spi0 {
-    status = "okay";
-
+    // &spi0 は seeeduino_xiao_ble.dts で定義済み
     trackball: trackball@0 {
         compatible = "pixart,pmw3610";
         reg = <0>;
         spi-max-frequency = <2000000>;
-        cs-gpios = <&gpio0 17 (GPIO_ACTIVE_LOW)>; // ご自身の配線に合わせてください
-
-        // ▼▼▼ ご提示いただいた設定をここから追加 ▼▼▼
-        scroll-layers = ;
-
-        arrows {
-            layers = <3>;
-            bindings =
-                <&kp RIGHT_ARROW>,
-                <&kp LEFT_ARROW>,
-                <&kp UP_ARROW>,
-                <&kp DOWN_ARROW>;
-        };
-
-        volume {
-            layers = <2>;
-            bindings =
-                <&none>,
-                <&none>,
-                <&kp C_VOLUME_UP>,
-                <&kp C_VOLUME_DOWN>;
-        };
-        // ▲▲▲ ここまで ▲▲▲
+        cs-gpios = <&gpio0 17 (GPIO_ACTIVE_LOW)>;
+        status = "disabled"; // デフォルトで無効化
     };
 };
