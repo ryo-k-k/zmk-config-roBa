@@ -12,3 +12,9 @@
         events = <0>;
     };
 };
+
+# GPIOマトリックスKScanが暗黙的に有効になっている場合、これを無効にする
+CONFIG_ZMK_KSCAN_GPIO_MATRIX=n
+
+# モックKScanを有効にする
+CONFIG_ZMK_KSCAN_MOCK=y
