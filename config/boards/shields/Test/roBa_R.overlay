@@ -2,11 +2,11 @@
  * roBa Right-Hand Side Overlay
  */
 
-// 右手側で使う kscan と trackball を有効化
+// 右手側で使う kscan と SPIバス (trackball) を有効化します。
 &kscan {
     status = "okay";
 };
 
-&trackball {
+&spi0 {
     status = "okay";
 };
