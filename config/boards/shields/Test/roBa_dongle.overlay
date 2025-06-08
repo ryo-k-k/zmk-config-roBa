@@ -11,9 +11,9 @@
     // mock_kscan の定義（キーボードの実際のスキャンを無効化する場合）
     mock_kscan: mock_kscan_0 {
         compatible = "zmk,kscan-mock";
-        columns = ;
-        rows = ;
-        events = ;
+        columns = <0>; // 値を追加しました
+        rows = <0>;    // 値を追加しました
+        events = <0>;  // 値を追加しました
     };
 
     // キーマップ変換の定義
@@ -37,7 +37,8 @@
     };
 
     // トラックボール入力リスナーの定義
-    trackball_listener: trackball_listener_0 { // 重複を避けるため、ラベル名を明示的に変更しても良い
+    // 注: 以前重複していたため、一つにまとめています。必要に応じてラベル名を変更してください。
+    trackball_listener: trackball_listener_0 {
         compatible = "zmk,input-listener";
         device = <&trackball>;
     };
@@ -45,12 +46,12 @@
     // 左エンコーダーの定義
     left_encoder: encoder_left {
         compatible = "alps,ec11";
-        // seeeduino_xiao_ble のピンアサインを確認し、適切に修正してください
-        // 例: &gpio0 5 と &gpio0 0 など
-        a-gpios = <&xiao_d 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>; 
+        // seeeduino_xiao_ble のピンアサインを再確認し、適切に修正してください
+        // 例: &gpio0 5 と &gpio0 0 など (現在 &xiao_d が使われています)
+        a-gpios = <&xiao_d 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         b-gpios = <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         steps = <12>;
-        status = "disabled"; // 後で "okay" でオーバーライドされます
+        status = "disabled"; // これは後で"okay"でオーバーライドされます
     };
 
     // 右エンコーダーの定義
@@ -98,7 +99,7 @@
     trackball: trackball@0 { // トラックボールのノード定義
         status = "okay";
         compatible = "pixart,pmw3610";
-        reg = ;
+        reg = <0>; // 値を追加しました (SPIの場合、通常は0)
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio0 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; // 割り込みピン
         cpi = <600>;
