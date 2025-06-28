@@ -11,7 +11,19 @@
 };
 
 / {
-    combos { compatible = "zmk,combos"; };
+    combos {
+        compatible = "zmk,combos";
+
+        COPY {
+            bindings = <&kp LC(C)>;
+            key-positions = <33 24>;
+        };
+
+        PAST {
+            bindings = <&kp LC(V)>;
+            key-positions = <33 25>;
+        };
+    };
 
     macros {
         to_layer_0: to_layer_0 {
@@ -68,7 +80,7 @@
 &kp EXCLAMATION  &kp DOUBLE_QUOTES  &kp HASH              &kp DOLLAR             &kp PERCENT                            &kp NUMBER_0  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp EQUAL
 &kp AT_SIGN      &kp SQT            &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp COLON      &trans      &kp COMMA   &kp SLASH     &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp ASTERISK
 &kp AMPERSAND    &kp SLASH          &kp LESS_THAN         &kp GREATER_THAN       &kp SEMICOLON  &trans      &kp PERIOD  &kp MINUS     &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp PLUS
-&kp LCTRL        &kp UNDERSCORE     &kp PERIOD            &trans                 &trans         &trans      &trans      &trans                                                  &kp DOT
+&kp LCTRL        &kp UNDERSCORE     &kp QUESTION          &trans                 &trans         &trans      &trans      &trans                                                  &kp DOT
             >;
         };
 
