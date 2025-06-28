@@ -11,19 +11,7 @@
 };
 
 / {
-    combos {
-        compatible = "zmk,combos";
-
-        COPY- {
-            bindings = <&kp LC(C)>;
-            key-positions = <33 24>;
-        };
-
-        PAST {
-            bindings = <&kp LC(V)>;
-            key-positions = <33 25>;
-        };
-    };
+    combos { compatible = "zmk,combos"; };
 
     macros {
         to_layer_0: to_layer_0 {
