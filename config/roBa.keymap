@@ -11,24 +11,7 @@
 };
 
 / {
-    combos {
-        compatible = "zmk,combos";
-
-        cop {
-            bindings = <&kp LC(C)>;
-            key-positions = <33 24>;
-        };
-
-        pes {
-            bindings = <&kp LC(V)>;
-            key-positions = <33 25>;
-        };
-
-        cut {
-            bindings = <&kp LC(X)>;
-            key-positions = <33 23>;
-        };
-    };
+    combos { compatible = "zmk,combos"; };
 
     macros {
         to_layer_0: to_layer_0 {
@@ -71,10 +54,10 @@
 
         default_layer {
             bindings = <
-&mt LEFT_WIN Q             &kp W         &kp E     &kp R             &kp T                                                 &kp Y      &kp U  &lt 5 I      &kp O    &kp P
-&lt 3 A                    &kp S         &kp D     &kp F             &kp G        &mkp MB3                  &kp MINUS      &kp H      &kp J  &lt 4 K      &kp L    &mt LEFT_SHIFT MINUS
-&mt LEFT_SHIFT Z           &kp X         &kp C     &kp V             &kp B        &kp COLON                 &kp SEMICOLON  &kp N      &kp M  &lt 5 COMMA  &kp DOT  &mt LEFT_CONTROL UNDERSCORE
-&mt LEFT_SHIFT LANGUAGE_2  &kp LEFT_ALT  &mkp MB1  &lt 2 LANGUAGE_1  &lt 1 SPACE  &lt_to_layer_0 6 TAB      &kp BACKSPACE  &kp ENTER                               &kp DEL
+&mt LEFT_WIN Q        &kp W         &kp E     &kp R        &kp T                                                 &kp Y      &kp U  &lt 5 I      &kp O    &kp P
+&lt 3 A               &kp S         &kp D     &kp F        &kp G        &mkp MB3                  &kp MINUS      &kp H      &kp J  &lt 4 K      &kp L    &mt LEFT_SHIFT MINUS
+&mt LEFT_SHIFT Z      &kp X         &kp C     &kp V        &kp B        &kp COLON                 &kp SEMICOLON  &kp N      &kp M  &lt 5 COMMA  &kp DOT  &mt LEFT_CONTROL UNDERSCORE
+&mt LEFT_SHIFT LANG2  &kp LEFT_ALT  &mkp MB1  &lt 2 LANG1  &lt 1 SPACE  &lt_to_layer_0 6 TAB      &kp BACKSPACE  &kp ENTER                               &kp DEL
             >;
 
             sensor-bindings = <&encoder_msc_down_up>;
