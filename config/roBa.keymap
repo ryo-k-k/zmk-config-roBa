@@ -67,7 +67,7 @@
         default_layer {
             bindings = <
 &mt LEFT_WIN Q             &kp W         &kp E     &kp R             &kp T                                                 &kp Y      &kp U  &lt 5 I      &kp O    &kp P
-&lt 3 A                    &kp S         &kp D     &kp F             &kp G        &kp LS(LG(S))             &kp MINUS      &kp H      &kp J  &lt 4 K      &kp L    &mt LEFT_SHIFT MINUS
+&lt 3 A                    &kp S         &kp D     &kp F             &kp G        &mkp MB3                  &kp MINUS      &kp H      &kp J  &lt 4 K      &kp L    &mt LEFT_SHIFT MINUS
 &mt LEFT_SHIFT Z           &kp X         &kp C     &kp V             &kp B        &kp COLON                 &kp SEMICOLON  &kp N      &kp M  &lt 5 COMMA  &kp DOT  &mt LEFT_CONTROL UNDERSCORE
 &mt LEFT_SHIFT LANGUAGE_2  &kp LEFT_ALT  &mkp MB1  &lt 2 LANGUAGE_1  &lt 1 SPACE  &lt_to_layer_0 6 TAB      &kp BACKSPACE  &kp ENTER                               &kp DEL
             >;
@@ -77,10 +77,10 @@
 
         FUNCTION {
             bindings = <
-&kp EXCLAMATION  &kp DOUBLE_QUOTES  &kp HASH              &kp DOLLAR             &kp PERCENT                            &kp NUMBER_0  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp EQUAL
-&kp AT_SIGN      &kp SQT            &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp COLON      &trans      &kp COMMA   &kp SLASH     &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp ASTERISK
-&kp AMPERSAND    &kp SLASH          &kp LESS_THAN         &kp GREATER_THAN       &kp SEMICOLON  &trans      &kp PERIOD  &kp MINUS     &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp PLUS
-&kp LCTRL        &kp UNDERSCORE     &kp QUESTION          &trans                 &trans         &trans      &trans      &trans                                                  &kp DOT
+&kp EXCLAMATION  &kp DOUBLE_QUOTES  &kp HASH              &kp DOLLAR             &kp PERCENT                                &kp NUMBER_0  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp EQUAL
+&kp AT_SIGN      &kp SQT            &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp COLON      &caps_word      &kp COMMA   &kp SLASH     &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp ASTERISK
+&kp AMPERSAND    &kp SLASH          &kp LESS_THAN         &kp GREATER_THAN       &kp SEMICOLON  &trans          &kp PERIOD  &kp MINUS     &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp PLUS
+&kp LCTRL        &kp UNDERSCORE     &kp QUESTION          &trans                 &trans         &trans          &trans      &trans                                                  &kp DOT
             >;
         };
 
