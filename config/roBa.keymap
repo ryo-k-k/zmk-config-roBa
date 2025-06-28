@@ -11,7 +11,24 @@
 };
 
 / {
-    combos { compatible = "zmk,combos"; };
+    combos {
+        compatible = "zmk,combos";
+
+        cop {
+            bindings = <&kp LC(C)>;
+            key-positions = <33 24>;
+        };
+
+        pes {
+            bindings = <&kp LC(V)>;
+            key-positions = <33 25>;
+        };
+
+        cut {
+            bindings = <&kp LC(X)>;
+            key-positions = <33 23>;
+        };
+    };
 
     macros {
         to_layer_0: to_layer_0 {
