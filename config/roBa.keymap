@@ -14,7 +14,7 @@
     combos {
         compatible = "zmk,combos";
 
-        COPY {
+        COPY- {
             bindings = <&kp LC(C)>;
             key-positions = <33 24>;
         };
